@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Tester Pro | Check Your Keys Online</title>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #3498db; --dark: #2c3e50; --key-bg: #444; --bg: #f4f7f6; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: #333; line-height: 1.6; }
         
-        .container { max-width: 1100px; margin: 20px auto; background: white; border-radius: 12px; shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        .container { max-width: 1100px; margin: 20px auto; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
         header { background: var(--dark); color: white; padding: 40px 20px; text-align: center; }
         
         /* AD SLOTS */
@@ -47,7 +49,7 @@
         footer { background: var(--dark); color: white; text-align: center; padding: 30px; font-size: 14px; }
         
         @media (max-width: 768px) {
-            .row { gap: 2px; } .key { min-width: 25px; height: 35px; font-size: 9px; }
+            .row { gap: 2px; flex-wrap: wrap; } .key { min-width: 25px; height: 35px; font-size: 9px; }
             .key-space { min-width: 100px; } .dashboard { grid-template-columns: 1fr; }
         }
     </style>
@@ -60,7 +62,7 @@
         <p>Advanced Diagnostics for Mechanical & Laptop Keyboards</p>
     </header>
 
-    <div class="ad-box">Google AdSense - Top Leaderboard (728x90)</div>
+    <div class="ad-box">Advertisement Area</div>
 
     <div class="dashboard">
         <div class="feature-card">
@@ -104,13 +106,19 @@
         </div>
     </div>
 
-    <div class="ad-box">Google AdSense - Middle Rectangle (300x250)</div>
+    <div class="ad-box">Advertisement Area</div>
 
     <section class="seo-content">
         <h2>About Keyboard Tester Pro</h2>
         <p>Welcome to the most advanced online tool for checking your keyboard’s health. Whether you are a gamer testing for ghosting or a developer checking a specific mechanical switch, our tool provides 100% accurate, browser-based hardware diagnostics.</p>
         
         <br>
+        <div id="privacy-policy">
+            <h2>Privacy Policy</h2>
+            <p>At TestMyKeyboard.online, we value your privacy. This tool runs entirely in your web browser. <strong>We do not collect, store, or transmit any of your keystrokes.</strong> No data is sent to our servers. We use standard Google services (like AdSense and Search Console) which may use cookies to show relevant ads and analyze site traffic.</p>
+        </div>
+        <br>
+
         <h2>Frequently Asked Questions (FAQ)</h2>
         <div class="faq-item">
             <h3>1. Why are some of my keys not lighting up?</h3>
@@ -133,7 +141,7 @@
     </section>
 
     <footer>
-        <p>Copyright &copy; 2026 Keyboard Tester Pro | <a href="#" style="color:#aaa;">Privacy Policy</a> | <a href="#" style="color:#aaa;">Contact Us</a></p>
+        <p>Copyright &copy; 2026 Keyboard Tester Pro | <a href="#privacy-policy" style="color:#aaa;">Privacy Policy</a> | <a href="mailto:support@testmykeyboard.online" style="color:#aaa;">Contact Us</a></p>
     </footer>
 </div>
 
@@ -157,15 +165,13 @@
 
     window.addEventListener('keydown', (e) => {
         if(!active) return;
-        e.preventDefault(); // Stop page scrolling/browser shortcuts during test
+        e.preventDefault(); 
 
-        // Add to Log
         const span = document.createElement('span');
         span.innerText = ` [${e.key}] `;
         log.appendChild(span);
         log.scrollTop = log.scrollHeight;
 
-        // Highlight Key
         keys.forEach(key => {
             if(key.dataset.code === e.code) {
                 key.classList.add('active');
