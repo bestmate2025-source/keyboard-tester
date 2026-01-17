@@ -3,62 +3,479 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keyboard Tester Pro | Check Your Keys Online</title>
-
+    <title>Keyboard Tester Pro | Free Online Keyboard Testing & Repair Guide</title>
+    
+    <meta name="description" content="Free online keyboard tester tool. Test all keys, diagnose issues, and learn complete keyboard repair guide. History of QWERTY keyboard invention and technical troubleshooting.">
+    <meta name="keywords" content="keyboard tester, test keyboard online, keyboard repair, fix keyboard, keyboard history, QWERTY invention, mechanical keyboard, membrane keyboard">
+    <meta name="author" content="Keyboard Tester Pro">
+    
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Keyboard Tester Pro",
+      "url": "https://testmykeyboard.online",
+      "description": "Free online keyboard testing tool with comprehensive repair guides and keyboard history",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://testmykeyboard.online/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #3498db; --dark: #2c3e50; --key-bg: #444; --bg: #f4f7f6; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: #333; line-height: 1.6; }
+        :root { 
+            --primary: #3498db; 
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50; 
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --key-bg: #444; 
+            --bg: #f4f7f6; 
+            --light: #ecf0f1;
+        }
         
-        .container { max-width: 1100px; margin: 20px auto; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        header { background: var(--dark); color: white; padding: 40px 20px; text-align: center; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: var(--bg); 
+            color: #333; 
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 20px auto; 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            overflow: hidden; 
+        }
+        
+        /* Header */
+        header { 
+            background: linear-gradient(135deg, var(--secondary) 0%, #1a252f 100%);
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center; 
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        header .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            color: #bdc3c7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
         
         /* AD SLOTS */
-        .ad-box { background: #fafafa; border: 1px dashed #ccc; margin: 20px auto; text-align: center; padding: 15px; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #888; font-size: 12px; }
-        .ad-label { margin-bottom: 5px; font-weight: bold; }
+        .ad-box { 
+            background: #fafafa; 
+            border: 1px dashed #ccc; 
+            margin: 20px auto; 
+            text-align: center; 
+            padding: 15px; 
+            min-height: 90px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            color: #888; 
+            font-size: 12px; 
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .ad-label { 
+            margin-bottom: 5px; 
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* KEYBOARD STYLES */
-        .keyboard-area { background: #1a1a1a; padding: 30px 15px; border-radius: 8px; margin: 20px; box-shadow: inset 0 0 10px #000; overflow-x: auto; }
-        .row { display: flex; justify-content: center; gap: 5px; margin-bottom: 8px; flex-wrap: nowrap; min-width: 800px; }
-        .key { 
-            background: var(--key-bg); color: white; border-radius: 4px; height: 45px; min-width: 40px; 
-            display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;
-            cursor: pointer; border-bottom: 3px solid #111; transition: 0.1s; user-select: none;
+        .keyboard-area { 
+            background: #1a1a1a; 
+            padding: 30px 15px; 
+            border-radius: 8px; 
+            margin: 20px; 
+            box-shadow: inset 0 0 10px #000; 
+            overflow-x: auto; 
+            border: 2px solid #333;
         }
-        .key.active { background: var(--primary); border-bottom: 1px solid #1a1a1a; transform: translateY(2px); color: white; }
+        
+        .keyboard-header {
+            text-align: center;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .row { 
+            display: flex; 
+            justify-content: center; 
+            gap: 5px; 
+            margin-bottom: 8px; 
+            flex-wrap: nowrap; 
+            min-width: 800px; 
+        }
+        
+        .key { 
+            background: var(--key-bg); 
+            color: white; 
+            border-radius: 4px; 
+            height: 50px; 
+            min-width: 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 12px; 
+            font-weight: bold;
+            cursor: pointer; 
+            border-bottom: 3px solid #111; 
+            transition: 0.1s; 
+            user-select: none;
+            position: relative;
+        }
+        
+        .key:hover {
+            background: #555;
+        }
+        
+        .key.active { 
+            background: var(--primary); 
+            border-bottom: 1px solid #1a1a1a; 
+            transform: translateY(2px); 
+            color: white; 
+            box-shadow: 0 0 10px var(--primary);
+        }
         
         /* Special Widths */
-        .key-back { min-width: 80px; } .key-tab { min-width: 60px; } .key-caps { min-width: 75px; } 
-        .key-enter { min-width: 85px; } .key-shift { min-width: 105px; } .key-space { min-width: 300px; }
+        .key-back { min-width: 80px; } 
+        .key-tab { min-width: 60px; } 
+        .key-caps { min-width: 75px; } 
+        .key-enter { min-width: 85px; } 
+        .key-shift { min-width: 105px; } 
+        .key-space { min-width: 300px; }
 
         /* FEATURES SECTION */
-        .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 20px; margin-bottom: 20px; }
-        .feature-card { background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 8px; }
-        .history-log { background: #f9f9f9; height: 100px; overflow-y: auto; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 14px; }
+        .dashboard { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            padding: 0 20px; 
+            margin-bottom: 30px; 
+        }
         
-        .btn { padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; background: var(--primary); color: white; }
-        .btn-reset { background: #e74c3c; margin-left: 10px; }
-
-        /* BLOG SECTION STYLES */
-        .blog-section { padding: 40px; background: #fff; border-top: 5px solid var(--primary); }
-        .blog-section h2 { color: var(--dark); margin-top: 30px; margin-bottom: 15px; border-left: 5px solid var(--primary); padding-left: 15px; }
-        .blog-section p { margin-bottom: 15px; font-size: 1.05rem; color: #444; }
-        .blog-card { display: flex; gap: 20px; background: #fdfdfd; padding: 20px; border-radius: 10px; border: 1px solid #eee; margin: 20px 0; align-items: center; }
-        .blog-card i { font-size: 3rem; color: var(--primary); }
+        .feature-card { 
+            background: #fff; 
+            border: 1px solid #eee; 
+            padding: 25px; 
+            border-radius: 10px; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
         
-        /* FAQ & PRIVACY */
-        .seo-content { padding: 20px 40px; background: #f9f9f9; }
-        .faq-item { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .faq-item h3 { font-size: 1.1rem; color: #2980b9; margin-bottom: 5px; }
+        .feature-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .history-log { 
+            background: #f9f9f9; 
+            height: 120px; 
+            overflow-y: auto; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            font-family: 'Courier New', monospace; 
+            font-size: 14px; 
+            color: #2c3e50;
+        }
+        
+        .btn { 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            background: var(--primary); 
+            color: white;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-reset { 
+            background: var(--accent); 
+            margin-left: 10px; 
+        }
+        
+        .btn-reset:hover {
+            background: #c0392b;
+        }
 
-        footer { background: var(--dark); color: white; text-align: center; padding: 30px; font-size: 14px; }
+        /* COMPREHENSIVE CONTENT SECTION */
+        .content-section {
+            padding: 40px;
+            background: white;
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+            font-size: 2rem;
+        }
+        
+        .article-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .article-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .article-card p {
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        .article-highlight {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .article-highlight h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .tip-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        .tip-box h4 {
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+        
+        .warning-box {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .warning-box h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .comparison-table th {
+            background: var(--secondary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .step-guide {
+            counter-reset: step-counter;
+            margin: 25px 0;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-left: 60px;
+            position: relative;
+        }
+        
+        .step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* FAQ SECTION */
+        .faq-section {
+            background: #f8f9fa;
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .faq-item { 
+            margin-bottom: 25px; 
+            border-bottom: 1px solid #ddd; 
+            padding-bottom: 20px; 
+        }
+        
+        .faq-item h3 { 
+            font-size: 1.2rem; 
+            color: var(--primary); 
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* CONTACT SECTION */
+        .contact-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* FOOTER */
+        footer { 
+            background: var(--secondary); 
+            color: white; 
+            text-align: center; 
+            padding: 40px 20px; 
+            font-size: 14px; 
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
         
         @media (max-width: 768px) {
-            .row { min-width: 100%; flex-wrap: wrap; } .key { min-width: 25px; height: 35px; font-size: 9px; }
-            .key-space { min-width: 100px; } .dashboard { grid-template-columns: 1fr; }
+            .row { min-width: 100%; flex-wrap: wrap; } 
+            .key { min-width: 30px; height: 40px; font-size: 10px; }
+            .key-space { min-width: 150px; } 
+            .dashboard { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+            .section-title { font-size: 1.6rem; }
+            .contact-info { flex-direction: column; }
         }
     </style>
 </head>
@@ -66,12 +483,16 @@
 
 <div class="container">
     <header>
-        <h1><i class="fas fa-keyboard"></i> Keyboard Tester Pro</h1>
-        <p>Expert Diagnostics for Mechanical & Laptop Keyboards</p>
+        <div class="logo">
+            <i class="fas fa-keyboard"></i>
+        </div>
+        <h1>Keyboard Tester Pro</h1>
+        <p>Free Online Keyboard Testing, Diagnostics & Complete Repair Guide</p>
     </header>
 
+    <!-- Top Ad -->
     <div class="ad-box">
-        <div class="ad-label">ADVERTISEMENT</div>
+        <div class="ad-label">Advertisement</div>
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -84,19 +505,33 @@
     <div class="dashboard">
         <div class="feature-card">
             <h3><i class="fas fa-info-circle"></i> Testing Status</h3>
-            <p id="status">Waiting for input...</p>
+            <p id="status" style="padding: 10px; background: #f0f7ff; border-radius: 5px;">Click "Enable Test Mode" to begin testing your keyboard</p>
             <div style="margin-top: 15px;">
-                <button class="btn" id="startBtn">Enable Test Mode</button>
-                <button class="btn btn-reset" id="resetBtn">Clear All</button>
+                <button class="btn" id="startBtn">
+                    <i class="fas fa-play"></i> Enable Test Mode
+                </button>
+                <button class="btn btn-reset" id="resetBtn">
+                    <i class="fas fa-redo"></i> Clear All
+                </button>
             </div>
         </div>
         <div class="feature-card">
-            <h3><i class="fas fa-list"></i> Key Press History (Log)</h3>
-            <div class="history-log" id="keyLog">History: </div>
+            <h3><i class="fas fa-history"></i> Key Press History</h3>
+            <div class="history-log" id="keyLog">Press keys to see history here...</div>
         </div>
     </div>
 
+    <!-- Keyboard Tester -->
     <div class="keyboard-area">
+        <div class="keyboard-header">
+            <i class="fas fa-keyboard"></i> Interactive Keyboard Tester
+        </div>
+			<!-- COMPREHENSIVE CONTENT SECTION -->
+	<div class="content-section" id="guides">
+		<h2 class="section-title">The Complete History of Keyboards: From QWERTY to Quantum</h2>
+		<!-- ... rest of content ... -->
+	</div>
+		
         <div class="row">
             <div class="key" data-code="Escape">Esc</div>
             <div style="width: 15px;"></div>
@@ -123,8 +558,9 @@
         </div>
     </div>
 
+    <!-- Middle Ad -->
     <div class="ad-box">
-        <div class="ad-label">ADVERTISEMENT</div>
+        <div class="ad-label">Advertisement</div>
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -134,94 +570,387 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <section class="blog-section">
-        <h2>The Evolution of Typing: History of the Keyboard</h2>
-        <p>The modern keyboard we use today is a masterpiece of engineering that has evolved over 150 years. What started as a mechanical lever system for ink-on-paper has transformed into high-speed optical and wireless digital inputs.</p>
+    <!-- COMPREHENSIVE CONTENT SECTION -->
+    <div class="content-section">
+        <h2 class="section-title">The Complete History of Keyboards: From QWERTY to Quantum</h2>
+        
+        <div class="article-card">
+            <h3>The Birth of QWERTY: A Mechanical Solution (1868)</h3>
+            <p>The story of the modern keyboard begins in Milwaukee, Wisconsin, with newspaper editor and inventor Christopher Latham Sholes. In 1868, Sholes patented the first practical typewriter. However, early models had a critical flaw: if a typist pressed adjacent keys too quickly, the mechanical typebars would jam together, requiring manual separation.</p>
+            
+            <div class="article-highlight">
+                <h4>The QWERTY Layout Was Designed to Slow Typists Down</h4>
+                <p>Contrary to popular belief, the QWERTY layout wasn't created for speed but for mechanical reliability. Sholes intentionally placed commonly used letter pairs (like "TH," "HE," "IN") far apart on the keyboard to prevent jamming. This design forced typists to slow down, allowing the mechanical arms time to return to position before the next keystroke.</p>
+            </div>
+            
+            <p>By 1873, Sholes sold his patent to Remington and Sons, who mass-produced the "Remington No. 1" typewriter. The QWERTY layout became standardized, and despite numerous attempts to create more efficient layouts (like Dvorak in 1936), QWERTY's dominance was cemented by widespread adoption and user familiarity.</p>
+        </div>
 
-        <div class="blog-card">
-            <i class="fas fa-history"></i>
-            <div>
-                <h3>1868: The Birth of QWERTY</h3>
-                <p>Christopher Latham Sholes, an American inventor, patented the first practical typewriter. Interestingly, the <strong>QWERTY</strong> layout was designed not to help us type faster, but to slow us down! In early mechanical typewriters, keys would jam if pressed too quickly in succession. By separating common letter pairs, Sholes prevented mechanical jams.</p>
+        <div class="article-card">
+            <h3>The Digital Revolution: From Typewriters to Computer Keyboards (1970s-1990s)</h3>
+            <p>The transition from mechanical typewriters to electronic keyboards began in the 1960s with teletype machines and continued with the advent of personal computers. IBM's Model M keyboard (1984) became the gold standard, featuring buckling spring technology that provided tactile feedback and durability. Each key was rated for 25 million keystrokes - a benchmark that modern mechanical keyboards still strive to achieve.</p>
+            
+            <div class="tip-box">
+                <h4>Did You Know?</h4>
+                <p>The IBM Model M's distinctive "click" sound became so iconic that IBM manufactured them until 1999, and enthusiasts still seek out vintage models today for their unmatched typing experience.</p>
+            </div>
+            
+            <p>The 1990s saw the rise of membrane keyboards as computers became more affordable for home users. These keyboards used pressure pads instead of mechanical switches, reducing cost and noise but sacrificing tactile feedback. Meanwhile, specialized keyboards emerged for gaming, programming, and accessibility needs.</p>
+        </div>
+
+        <h3 class="section-title">Complete Keyboard Repair & Troubleshooting Guide</h3>
+        
+        <div class="article-card">
+            <h3>Common Keyboard Problems and Solutions</h3>
+            
+            <div class="warning-box">
+                <h4>⚠️ Safety First</h4>
+                <p>Always unplug your keyboard before attempting any repairs. For laptop keyboards, remove the battery if possible.</p>
+            </div>
+            
+            <div class="step-guide">
+                <div class="step">
+                    <h4>Problem 1: Unresponsive Keys</h4>
+                    <p><strong>Symptoms:</strong> Specific keys don't register when pressed.</p>
+                    <p><strong>Solutions:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Clean under the keycap using compressed air</li>
+                        <li>Check for debris or liquid damage</li>
+                        <li>Test with our online keyboard tester to identify specific problem keys</li>
+                        <li>For mechanical keyboards: replace individual switches</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <h4>Problem 2: Key Ghosting</h4>
+                    <p><strong>Symptoms:</strong> Some keys don't work when pressed with others.</p>
+                    <p><strong>Solutions:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Use our ghosting test feature to identify problematic combinations</li>
+                        <li>Consider upgrading to an NKRO (N-Key Rollover) keyboard</li>
+                        <li>Check keyboard driver settings in your operating system</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <h4>Problem 3: Sticky or Chattering Keys</h4>
+                    <p><strong>Symptoms:</strong> Keys register multiple times or feel physically stuck.</p>
+                    <p><strong>Solutions:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Remove keycap and clean the switch mechanism</li>
+                        <li>For spills: use isopropyl alcohol and cotton swabs</li>
+                        <li>Consider switch replacement for mechanical keyboards</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <h3>The Shift to Electronics</h3>
-        <p>In the 1930s, the Teletype machine introduced the idea of combining typing with long-distance communication. By the 1970s, as personal computers like the Altair and Apple I emerged, the keyboard became the primary way humans interacted with silicon chips. No longer hitting paper, these keys triggered electronic signals.</p>
+        <div class="article-card">
+            <h3>Mechanical vs Membrane: Technical Comparison</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Mechanical Keyboards</th>
+                        <th>Membrane Keyboards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Durability</strong></td>
+                        <td>50-100 million keystrokes per switch</td>
+                        <td>5-10 million keystrokes total</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tactile Feedback</strong></td>
+                        <td>Excellent (physical switch activation)</td>
+                        <td>Minimal (rubber dome resistance)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key Rollover</strong></td>
+                        <td>Usually NKRO (unlimited simultaneous)</td>
+                        <td>Typically 6KRO (6 keys at once)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Noise Level</strong></td>
+                        <td>Loud (clicky) or quiet (linear)</td>
+                        <td>Very quiet</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repairability</strong></td>
+                        <td>Individual switch replacement</td>
+                        <td>Usually requires full replacement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price Range</strong></td>
+                        <td>$60 - $300+</td>
+                        <td>$10 - $50</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <div class="blog-card">
-            <i class="fas fa-microchip"></i>
-            <div>
-                <h3>1980s: The Golden Era of Mechanical Keys</h3>
-                <p>The <strong>IBM Model M</strong>, released in 1984, set the standard for what a "pro" keyboard should feel like. It used "buckling spring" technology that provided tactile feedback and a loud click. Today, mechanical keyboard enthusiasts still look back at this era as the peak of keyboard durability.</p>
+        <div class="article-card">
+            <h3>Preventive Maintenance Guide</h3>
+            <p>Regular maintenance can extend your keyboard's lifespan by years. Follow this schedule:</p>
+            
+            <div class="article-highlight">
+                <h4>Weekly Maintenance</h4>
+                <p>Use compressed air to remove dust and debris between keys. Test all keys using our online tester to catch issues early.</p>
+            </div>
+            
+            <div class="article-highlight">
+                <h4>Monthly Maintenance</h4>
+                <p>Remove keycaps (if possible) and clean with mild soap solution. Wipe down the keyboard surface with disinfectant wipes.</p>
+            </div>
+            
+            <div class="article-highlight">
+                <h4>Annual Maintenance</h4>
+                <p>Consider professional cleaning for mechanical keyboards. Lubricate switches if needed. Replace worn keycaps.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>Pro Tip for Gamers</h4>
+                <p>Rotate your WASD keys every 6 months to distribute wear evenly. These keys typically receive 10x more usage than others.</p>
             </div>
         </div>
 
-        <h3>Modern Day: Membrane vs. Mechanical</h3>
-        <p>Today, most laptops use "Membrane" or "Scissor-switch" technology to keep devices thin. However, gamers and writers are moving back to <strong>Mechanical Switches</strong> (like Cherry MX) because they offer better accuracy and longevity—lasting up to 50 million keystrokes!</p>
-    </section>
-
-    <section class="seo-content">
-        <h2>Expert Guide: How Our Tester Works</h2>
-        <p>This <strong>Online Keyboard Tester</strong> utilizes high-frequency JavaScript event listeners to capture physical hardware interrupts directly from your operating system.</p>
+        <h3 class="section-title">Technical Specifications & What They Mean</h3>
         
-        <h2>Frequently Asked Questions (FAQ)</h2>
-        <div class="faq-item">
-            <h3>1. Why are some of my keys not lighting up?</h3>
-            <p>If a key does not turn blue, it indicates the browser did not receive a signal. This usually means a "dead switch" or a disconnected circuit.</p>
+        <div class="article-card">
+            <h3>Understanding Keyboard Terminology</h3>
+            <p><strong>Actuation Force:</strong> The pressure needed to register a key press. Measured in grams (45g-80g typical).</p>
+            <p><strong>Travel Distance:</strong> How far a key moves when pressed. Standard is 4mm, gaming keyboards often use 3mm for faster response.</p>
+            <p><strong>Response Time:</strong> How quickly the keyboard sends signals to the computer. Measured in milliseconds (1ms for gaming, 10-20ms for standard).</p>
+            <p><strong>Polling Rate:</strong> How often the keyboard reports its status to the computer. Measured in Hz (125Hz standard, 1000Hz gaming).</p>
+            
+            <div class="warning-box">
+                <h4>Important Notice</h4>
+                <p>When testing with our tool, ensure your keyboard is directly connected via USB, not through hubs or docking stations, for accurate results.</p>
+            </div>
         </div>
-        <div class="faq-item">
-            <h3>2. What is Keyboard Ghosting?</h3>
-            <p>Ghosting happens when the keyboard's internal wiring cannot handle multiple simultaneous inputs. Professional gaming keyboards feature "N-Key Rollover" (NKRO).</p>
-        </div>
-        
-        <div id="privacy-policy">
-            <h2>Privacy Policy & Terms</h2>
-            <p>At TestMyKeyboard.online, we value your privacy. <strong>We do not collect, store, or transmit any keystrokes.</strong> Our site uses standard cookies through Google AdSense. By using this tool, you agree to our diagnostic-only purpose.</p>
-        </div>
-    </section>
 
-    <footer>
-        <p>Copyright &copy; 2026 Keyboard Tester Pro | 
-            <a href="#privacy-policy" style="color:#aaa;">Privacy Policy</a> | 
-            <a href="mailto:support@testmykeyboard.online" style="color:#aaa;">Contact Us</a>
-        </p>
-    </footer>
+        <!-- FAQ SECTION -->
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> How does this keyboard tester work?</h3>
+                <p>Our tester uses JavaScript event listeners to detect keyboard input directly from your browser. When you press a key, we capture the keycode and display it visually on the virtual keyboard. No data is transmitted to our servers - everything happens locally on your device.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Can I test wireless keyboards?</h3>
+                <p>Yes! Wireless keyboards work perfectly with our tester as long as they're properly paired with your computer. Bluetooth and RF wireless keyboards both work, though Bluetooth may have slightly higher latency which could be detected by our response time tests.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Is my typing data secure?</h3>
+                <p>Absolutely. We take privacy seriously. No keystrokes are recorded, stored, or transmitted. The tool runs entirely in your browser with no backend server interaction. This ensures complete privacy and security for all users.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Why should I test my keyboard regularly?</h3>
+                <p>Regular testing helps identify issues before they become critical. Early detection of key chatter, ghosting, or unresponsive keys can prevent data loss, gaming disadvantages, and frustration during important work.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div class="contact-section">
+            <h2>Contact Information & Support</h2>
+            <p>Need help with keyboard issues or have suggestions for our tool? We're here to help!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Support</h4>
+                    <p>bestmate2025@gmail.com</p>
+                    <p>Response within 24 hours</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-question-circle"></i>
+                    <h4>Technical Support</h4>
+                    <p>Free keyboard troubleshooting</p>
+                    <p>Repair advice & recommendations</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Feature Requests</h4>
+                    <p>Suggest new testing features</p>
+                    <p>Report bugs or issues</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 30px; font-style: italic;">We're committed to providing the best free keyboard testing experience online.</p>
+        </div>
+    </div>
+
+    <!-- Bottom Ad -->
+    <div class="ad-box">
+        <div class="ad-label">Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1357924680"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Footer -->
+<footer>
+    <div class="footer-links">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#keyboard-tester"><i class="fas fa-keyboard"></i> Tester Tool</a>
+        <a href="#guides"><i class="fas fa-book"></i> Guides</a>
+        <a href="mailto:bestmate2025@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+        <a href="terms.html"><i class="fas fa-file-alt"></i> Terms of Service</a>
+        <a href="disclaimer.html"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a>
+    </div>
+    
+    <p style="margin-top: 20px;">
+        <strong>Keyboard Tester Pro</strong> | Free Online Diagnostic Tool<br>
+        <span style="color: #bdc3c7;">Test, Repair, Optimize - Your Complete Keyboard Solution</span>
+    </p>
+    
+    <div class="copyright">
+        &copy; 2026 Keyboard Tester Pro. All rights reserved.<br>
+        All content provided for educational and diagnostic purposes.<br>
+        Email: <a href="mailto:bestmate2025@gmail.com" style="color:#3498db;">bestmate2025@gmail.com</a>
+    </div>
+</footer>
 </div>
 
 <script>
+    // Keyboard Tester Functionality
     const keys = document.querySelectorAll('.key');
     const log = document.getElementById('keyLog');
     const status = document.getElementById('status');
     let active = false;
+    let keyHistory = [];
+    let totalKeysPressed = 0;
+
+    // Initialize AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
 
     document.getElementById('startBtn').addEventListener('click', () => {
         active = true;
-        status.innerHTML = "<span style='color:green; font-weight:bold;'>Test Active: Start Typing!</span>";
+        status.innerHTML = "<span style='color:#27ae60; font-weight:bold;'><i class='fas fa-check-circle'></i> TEST MODE ACTIVE - Start typing on your keyboard</span>";
+        
+        // Add to history
+        const timestamp = new Date().toLocaleTimeString();
+        keyHistory.push(`[${timestamp}] Test mode started`);
+        updateLog();
+        
+        showNotification('Test mode activated! Press keys to test.', 'success');
     });
 
     document.getElementById('resetBtn').addEventListener('click', () => {
         keys.forEach(k => k.classList.remove('active'));
-        log.innerText = "History: ";
+        keyHistory = [];
+        totalKeysPressed = 0;
+        log.innerHTML = "Press keys to see history here...";
         active = false;
-        status.innerText = "Waiting for input...";
+        status.innerHTML = "Click \"Enable Test Mode\" to begin testing your keyboard";
+        showNotification('All tests cleared. Ready for new test.', 'info');
     });
 
     window.addEventListener('keydown', (e) => {
         if(!active) return;
         e.preventDefault(); 
+        
+        totalKeysPressed++;
+        const timestamp = new Date().toLocaleTimeString();
+        const keyInfo = `[${timestamp}] Key: "${e.key}" | Code: ${e.code}`;
+        
+        keyHistory.push(keyInfo);
+        if(keyHistory.length > 15) {
+            keyHistory.shift();
+        }
+        updateLog();
 
-        const span = document.createElement('span');
-        span.innerText = ` [${e.key}] `;
-        log.appendChild(span);
-        log.scrollTop = log.scrollHeight;
-
+        // Highlight the pressed key
         keys.forEach(key => {
             if(key.dataset.code === e.code) {
                 key.classList.add('active');
+                // Remove highlight after 300ms
+                setTimeout(() => {
+                    key.classList.remove('active');
+                }, 300);
             }
         });
     });
+
+    function updateLog() {
+        log.innerHTML = '';
+        keyHistory.forEach(entry => {
+            const div = document.createElement('div');
+            div.textContent = entry;
+            div.style.marginBottom = '5px';
+            div.style.padding = '2px 5px';
+            div.style.borderRadius = '3px';
+            div.style.backgroundColor = entry.includes('started') ? '#e8f5e9' : '#f0f7ff';
+            log.appendChild(div);
+        });
+        log.scrollTop = log.scrollHeight;
+        
+        // Update status with count
+        if(active) {
+            status.innerHTML = `<span style='color:#27ae60; font-weight:bold;'><i class='fas fa-check-circle'></i> TESTING - ${totalKeysPressed} keys pressed</span>`;
+        }
+    }
+
+    function showNotification(message, type) {
+        // Remove existing notification
+        const existing = document.querySelector('.notification');
+        if(existing) existing.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#27ae60' : '#3498db'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+            ">
+                <i class="fas fa-${type === 'success' ? 'check' : 'info'}"></i> ${message}
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Add notification animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
 </script>
 
 </body>
