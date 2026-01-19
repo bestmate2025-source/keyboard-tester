@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /private/
+Disallow: /wp-admin/
+
+# Ads.txt for AdSense verification
+Allow: /ads.txt
+Allow: /sitemap.xml
+
+# Sitemap location
+Sitemap: https://testmykeyboard.online/sitemap.xml
+
+# Crawl-delay: 10  # Optional: if you want to limit crawl rate
